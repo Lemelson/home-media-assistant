@@ -38,6 +38,10 @@ def _render_page(states, page, page_size, now, disk_summary):
         else:
             text = state.get('text', '')
             for line in text.splitlines():
+                if line.startswith(('Передают вам:', 'Участники:')):
+                    if re.match(r'^Передают вам: [012](?:\s|$)', line):
+                        lines.append(line)
+                    continue
                 if (line.startswith(('<b>⬇', '<b>⏸', '<b>🔎', '<b>⚠', '<b>⏳', '<b>В очереди', 'Раздают:', 'Скорость:', 'Ожидаемая скорость'))
                         or re.match(r'^\d.* из ', line) or '░' in line or '█' in line or '▌' in line):
                     lines.append(line)

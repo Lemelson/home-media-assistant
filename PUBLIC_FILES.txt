@@ -139,6 +139,7 @@ deployment-reference/tests/test_movie_images.py
 deployment-reference/tests/test_multifilm.py
 deployment-reference/tests/test_naming.py
 deployment-reference/tests/test_numeric_titles.py
+deployment-reference/tests/test_peer_visibility.py
 deployment-reference/tests/test_posters.py
 deployment-reference/tests/test_priority_lock.py
 deployment-reference/tests/test_priority_response.py
@@ -229,6 +230,7 @@ tests/test_media_labels.py
 tests/test_movie_images.py
 tests/test_multifilm.py
 tests/test_naming.py
+tests/test_peer_visibility.py
 tests/test_posters.py
 tests/test_priority_lock.py
 tests/test_priority_response.py
