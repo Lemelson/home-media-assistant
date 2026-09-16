@@ -19,6 +19,7 @@ bot/candidate_gallery.py
 bot/config.py
 bot/delivery.py
 bot/dialog.py
+bot/disk_summary.py
 bot/download_dashboard.py
 bot/download_forecast.py
 bot/history_storage.py
@@ -51,6 +52,7 @@ deployment-reference/bot/candidate_gallery.py
 deployment-reference/bot/config.py
 deployment-reference/bot/delivery.py
 deployment-reference/bot/dialog.py
+deployment-reference/bot/disk_summary.py
 deployment-reference/bot/download_dashboard.py
 deployment-reference/bot/download_forecast.py
 deployment-reference/bot/history_storage.py
@@ -87,6 +89,7 @@ deployment-reference/docs/PUBLICATION.ru.md
 deployment-reference/examples/home-media-bot.service
 deployment-reference/examples/org.home-media-assistant.agent.plist
 deployment-reference/mac_agent/__init__.py
+deployment-reference/mac_agent/disk_summary.py
 deployment-reference/mac_agent/download_journal.py
 deployment-reference/mac_agent/download_queue.py
 deployment-reference/mac_agent/launch_transmission.py
@@ -110,6 +113,7 @@ deployment-reference/tests/test_capacity.py
 deployment-reference/tests/test_delivery.py
 deployment-reference/tests/test_deploy.py
 deployment-reference/tests/test_dialog.py
+deployment-reference/tests/test_disk_summary.py
 deployment-reference/tests/test_download_dashboard.py
 deployment-reference/tests/test_download_forecast.py
 deployment-reference/tests/test_download_journal.py
@@ -184,6 +188,7 @@ docs/ru/USAGE.md
 examples/agent.example.json
 examples/transmission-rpc.example.json
 mac_agent/__init__.py
+mac_agent/disk_summary.py
 mac_agent/download_journal.py
 mac_agent/download_queue.py
 mac_agent/launch_transmission.py
@@ -203,6 +208,7 @@ tests/test_capacity.py
 tests/test_delivery.py
 tests/test_deploy.py
 tests/test_dialog.py
+tests/test_disk_summary.py
 tests/test_download_dashboard.py
 tests/test_download_forecast.py
 tests/test_download_journal.py

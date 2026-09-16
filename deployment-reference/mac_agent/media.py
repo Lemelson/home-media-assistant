@@ -52,12 +52,19 @@ class MediaController:
 
     def status(self):
         try:
-            self.check_disk()
+            root = self.check_disk()
             disk_ok = True
         except DiskUnavailable as error:
             disk_ok = None if str(error) in ('disk_probe_timeout','disk_probe_failed','disk_probe_busy') else False
         known = self.store.read_state('managed', {})
         torrents = self.rpc.call('torrent-get', {'fields': FIELDS}).get('torrents', [])
+        disk_summary = {}
+        if disk_ok is True:
+            from mac_agent.disk_summary import collect
+            try:
+                disk_summary = collect(root, torrents, known, HEADROOM)
+            except OSError:
+                pass
         managed = []
         for t in torrents:
             if t['hashString'] in known:
@@ -77,7 +84,7 @@ class MediaController:
                     t['capacity_error'] = known[t['hashString']].get('capacity_error', 'size_unknown')
                 t['downloaded_bytes'] = max(0, t.get('sizeWhenDone', t.get('totalSize', 0)) - t['remaining_bytes'])
                 managed.append(t)
-        return {'ok': True, 'disk_ok': disk_ok, 'disk_state': 'checking' if disk_ok is None else 'ready' if disk_ok else 'missing', 'torrents': managed,
+        return {'ok': True, 'disk_ok': disk_ok, 'disk_state': 'checking' if disk_ok is None else 'ready' if disk_ok else 'missing', 'torrents': managed, 'disk_summary': disk_summary,
                 'download_history':self.journal.summaries(),'history_storage':self.journal.storage()}
 
     def collect_history(self):

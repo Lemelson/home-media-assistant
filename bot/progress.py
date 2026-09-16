@@ -294,6 +294,7 @@ class ProgressMonitor:
         except Exception:
             available = False
             torrents = {}
+        self.store.write_state('disk-summary', dict(status.get('disk_summary') or {}, at=now))
         if available:
             for job in old_jobs:
                 result=job.get('result') or {}

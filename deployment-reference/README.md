@@ -135,3 +135,5 @@ Get the foreground setup working first. Then adapt the [systemd example](example
 Stop the bot before replacing source code; keep private state/configuration out of Git and back them up locally first. Run tests and verify `/status` after restart. Rollback means restoring the previous source directory; database compatibility depends on the update. Do not auto-update from an unreviewed branch.
 
 Test sleep, closed-lid behavior, removed storage, lost network and reboot recovery separately. A running process does not prove unattended operation. Stopping the bot does not stop transfers already running in Transmission.
+
+The Downloads dashboard shows current disk space, remaining queue size (including paused downloads), projected free space or shortage, and a conditional time estimate at the current total speed. Missing metadata or stale status suppresses unreliable estimates. The safety reserve can pause downloads before the disk fills.

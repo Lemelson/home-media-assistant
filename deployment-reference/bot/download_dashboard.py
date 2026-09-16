@@ -19,23 +19,26 @@ def _stale(state, now):
             or (state.get('snapshot_at') is not None and now-state['snapshot_at'] > 45))
 
 
-def render(states, page=0, now=None):
+def render(states, page=0, now=None, disk_summary=None):
     now = time.time() if now is None else now
     # Count HTML and UTF-16 conservatively; leave room below Telegram's limit.
     for page_size in range(max(1, min(len(states), MAX_BUTTONS)), 0, -1):
         pages = max(1, math.ceil(len(states) / page_size))
-        if all(len(_render_page(states, index, page_size, now)[0].encode('utf-16-le')) // 2 <= MESSAGE_BUDGET
+        if all(len(_render_page(states, index, page_size, now, disk_summary)[0].encode('utf-16-le')) // 2 <= MESSAGE_BUDGET
                for index in range(pages)):
-            return _render_page(states, page, page_size, now)
-    return _render_page(states, page, 1, now)
+            return _render_page(states, page, page_size, now, disk_summary)
+    return _render_page(states, page, 1, now, disk_summary)
 
 
-def _render_page(states, page, page_size, now):
+def _render_page(states, page, page_size, now, disk_summary):
     states = sorted(states, key=lambda s: (s.get('created', 0), s['hash']))
     pages = max(1, math.ceil(len(states) / page_size))
     page = min(max(0, page), pages - 1)
     shown = states[page * page_size:(page + 1) * page_size]
     blocks = ['<b>⬇️ Загрузки</b>']
+    if disk_summary is not None:
+        from bot.disk_summary import render as render_disk
+        blocks.append(render_disk(disk_summary, now))
     stale = [s for s in states if _stale(s, now)]
     if stale:
         ages = [max(0, now-s['snapshot_at']) for s in stale if s.get('snapshot_at') is not None]
@@ -141,7 +144,7 @@ def _publish(dialog, uid, now, preferred=None, fresh=False, cleanup=True, contro
             original['paused']=desired['mode']==2
             original['priority_pending']=True
 
-    text, markup, page = render(states, dashboard.get('page',0), now)
+    text, markup, page = render(states, dashboard.get('page',0), now, store.read_state('disk-summary', {}))
     message_id = preferred or (None if fresh else dashboard.get('message_id'))
     if controls_only:
         if message_id and markup != dashboard.get('markup'):
