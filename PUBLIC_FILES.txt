@@ -80,6 +80,10 @@ deployment-reference/bot/status_delivery.py
 deployment-reference/bot/transport.py
 deployment-reference/bot/web_search.py
 deployment-reference/deploy/home-media-deploy
+deployment-reference/docs/OPERATIONS.md
+deployment-reference/docs/OPERATIONS.ru.md
+deployment-reference/docs/PUBLICATION.md
+deployment-reference/docs/PUBLICATION.ru.md
 deployment-reference/examples/home-media-bot.service
 deployment-reference/examples/org.home-media-assistant.agent.plist
 deployment-reference/mac_agent/__init__.py

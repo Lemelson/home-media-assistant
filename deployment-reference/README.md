@@ -4,6 +4,13 @@
 
 A sanitized source edition derived from a running installation, prepared in September 2026. This is code and a reproducible setup guide, not a server backup. It contains no operator credentials, media inventory, chat logs or configured content sources.
 
+## Detailed guides
+
+- [Architecture, connections, persistent services and troubleshooting](docs/OPERATIONS.md).
+- [Publication scope, licensing and personal data](docs/PUBLICATION.md).
+
+The installation sequence follows below; the guides explain the reasons and expected outcomes of each stage.
+
 ## Purpose and layout
 
 Control your private home library from a private Telegram chat: submit authorized torrents or magnet links, monitor transfers, pause/resume, choose seasons and browse managed files. Optional providers identify titles and search sources you configure independently. Playback happens in Plex or another player, not Telegram.

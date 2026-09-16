@@ -28,3 +28,7 @@ Commit: `b908ce1`. Created a separate generalized source tree with EN/RU documen
 - Removed operator identities/configurations, captured search datasets and site-specific authenticated browser tooling from the export.
 - Extended legal guidance for the United States, Russia and Europe without promising immunity or granting media rights.
 - Validation: 292 baseline and 417 reference tests passed locally; CI now tests both editions. Publication/privacy checks include outgoing history. Identify this checkpoint with `git log -- deployment-reference/SNAPSHOT.md`; local checks and remote CI/publication are separate results.
+
+## 2026-09-16 — Expanded installation and publication handbook
+
+Added paired Russian/English guides for topology choice, Mac hosting, control/data connections, credentials, staged setup, service startup, troubleshooting, backups and publication rights. Reviewed commands against public source/examples and primary documentation. Documentation-only update; no runtime behavior changed. Validation: Markdown links, shell syntax, manifest and publication privacy checks; CI is reported separately by GitHub Actions.

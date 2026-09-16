@@ -3,6 +3,8 @@
 **English** · [Русский](README.ru.md)
 
 
+[Detailed architecture and operations](deployment-reference/docs/OPERATIONS.md) · [Publication and rights](deployment-reference/docs/PUBLICATION.md)
+
 ## Current deployment reference
 
 The separate [deployment-reference directory](deployment-reference/README.md) contains sanitized current bot and Mac-agent code, search retries, independent film cards, and a step-by-step single-Mac or Linux-plus-Mac setup. It is a source edition with documented public adaptations, not an image of a private server. Use that directory for current features; the root implementation remains the earlier baseline.
