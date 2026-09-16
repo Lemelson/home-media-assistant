@@ -136,4 +136,4 @@ Stop the bot before replacing source code; keep private state/configuration out 
 
 Test sleep, closed-lid behavior, removed storage, lost network and reboot recovery separately. A running process does not prove unattended operation. Stopping the bot does not stop transfers already running in Transmission.
 
-The Downloads dashboard shows current disk space, remaining queue size (including paused downloads), projected free space or shortage, and a conditional time estimate at the current total speed. Missing metadata or stale status suppresses unreliable estimates. The safety reserve can pause downloads before the disk fills.
+The Downloads dashboard shows current disk space, remaining queue size (including paused downloads), projected free space or shortage, and a conditional time range from each film’s downloaded bytes over the last 10 minutes, including stalls. Missing metadata or stale status suppresses unreliable estimates. The safety reserve can pause downloads before the disk fills.

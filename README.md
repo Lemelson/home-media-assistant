@@ -60,4 +60,4 @@ Work checkpoints and search visibility: [publication policy](docs/en/PUBLICATION
 
 Feature and fix history: [development checkpoints](CHANGELOG.md).
 
-The Downloads dashboard shows current disk space, remaining queue size (including paused downloads), projected free space or shortage, and a conditional time estimate at the current total speed. Missing metadata or stale status suppresses unreliable estimates. The safety reserve can pause downloads before the disk fills.
+The Downloads dashboard shows current disk space, remaining queue size (including paused downloads), projected free space or shortage, and a conditional time range from each film’s downloaded bytes over the last 10 minutes, including stalls. Missing metadata or stale status suppresses unreliable estimates. The safety reserve can pause downloads before the disk fills.

@@ -33,6 +33,7 @@ bot/naming_worker.py
 bot/posters.py
 bot/progress.py
 bot/providers.py
+bot/queue_eta.py
 bot/rendering.py
 bot/search.py
 bot/search_sessions.py
@@ -67,6 +68,7 @@ deployment-reference/bot/naming_worker.py
 deployment-reference/bot/posters.py
 deployment-reference/bot/progress.py
 deployment-reference/bot/providers.py
+deployment-reference/bot/queue_eta.py
 deployment-reference/bot/release_catalog.py
 deployment-reference/bot/release_details.py
 deployment-reference/bot/release_matching.py
@@ -145,6 +147,7 @@ deployment-reference/tests/test_progress_history.py
 deployment-reference/tests/test_progress_rotation.py
 deployment-reference/tests/test_providers.py
 deployment-reference/tests/test_public_config.py
+deployment-reference/tests/test_queue_eta.py
 deployment-reference/tests/test_reactive_controls.py
 deployment-reference/tests/test_recovery.py
 deployment-reference/tests/test_release_catalog.py
@@ -235,6 +238,7 @@ tests/test_progress_rotation.py
 tests/test_providers.py
 tests/test_public_config.py
 tests/test_public_tree.py
+tests/test_queue_eta.py
 tests/test_reactive_controls.py
 tests/test_recovery.py
 tests/test_request_recovery.py

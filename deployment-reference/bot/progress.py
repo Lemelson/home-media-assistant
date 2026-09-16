@@ -288,7 +288,13 @@ class ProgressMonitor:
             if live_clock: now = time.time()
             available = False
             torrents = {}
-        self.store.write_state('disk-summary', dict(status.get('disk_summary') or {}, at=now))
+        from bot.queue_eta import observe as observe_queue
+        queue_history = self.store.read_state('queue-eta-history', {})
+        disk = dict(status.get('disk_summary') or {}, at=now)
+        if status.get('disk_ok') is True:
+            disk['forecast'] = observe_queue(queue_history, list(torrents.values()), now, disk)
+            self.store.write_state('queue-eta-history', queue_history)
+        self.store.write_state('disk-summary', disk)
         if available:
             for job in old_jobs:
                 result=job.get('result') or {}

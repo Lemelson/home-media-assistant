@@ -33,14 +33,15 @@ class DiskSummaryTests(unittest.TestCase):
             text = render(dict(result, at=100), 100)
             self.assertIn('после загрузок: уточняется', text)
             self.assertNotIn('после загрузок: <b>', text)
-            self.assertIn('Жду скорость', text)
+            self.assertIn('Собираю 10 мин', text)
 
     def test_sufficient_space_and_stale_data(self):
         result = dict(free_bytes=20*G, remaining_bytes=5*G, rate_bytes=G/100,
-                      headroom_bytes=G, unknown_count=0, at=100)
+                      headroom_bytes=G, unknown_count=0, at=100,
+                      forecast={'complete': {'low': 400, 'high': 600}})
         text = render(result, 100)
         self.assertIn('после загрузок: <b>15.0 ГБ', text)
-        self.assertIn('При текущем темпе:', text)
+        self.assertIn('≈ 5 мин–10 мин (за 10 мин)', text)
         self.assertNotIn('До заполнения', text)
         self.assertEqual(len(text.splitlines()), 2)
         self.assertLess(len(text), 140)
@@ -78,7 +79,8 @@ class DiskSummaryTests(unittest.TestCase):
         from bot.download_dashboard import render as dashboard
         rows = [dict(hash=str(i), name='Long film '*15, text='█'*18, active=True) for i in range(45)]
         snapshot = dict(free_bytes=20*G, remaining_bytes=5*G, rate_bytes=G/100,
-                        headroom_bytes=G, unknown_count=0, at=100)
+                        headroom_bytes=G, unknown_count=0, at=100,
+                      forecast={'complete': {'low': 400, 'high': 600}})
         for page in range(15):
             text, _, _ = dashboard(rows, page, 100, snapshot)
             self.assertIn('15.0 ГБ', text)
