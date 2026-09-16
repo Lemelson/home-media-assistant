@@ -9,33 +9,28 @@ def gb(value):
 def render(snapshot, now):
     if (not snapshot or snapshot.get('free_bytes') is None
             or not 0 <= now - snapshot.get('at', 0) <= 45):
-        return '<b>💾 Диск</b>: нет свежих данных. Обновляю свободное место и прогноз.'
+        return '💾 Обновляю данные о диске…'
     free = snapshot['free_bytes']
     left = snapshot['remaining_bytes']
     rate = snapshot['rate_bytes']
     reserve = snapshot['headroom_bytes']
     unknown = snapshot['unknown_count']
-    lines = ['<b>💾 Диск · вся очередь, включая паузу</b>',
-             'Свободно сейчас: <b>%s</b>' % gb(free),
-             'Осталось скачать: %s%s' % ('не менее ' if unknown else '', gb(left))]
+    lines = ['💾 Свободно: <b>%s</b>' % gb(free)]
     if unknown:
-        lines.append('Размер части загрузок ещё неизвестен; итог уточняется.')
+        lines[0] += ' · после загрузок: уточняется'
+    elif left <= free:
+        lines[0] += ' → после загрузок: <b>%s</b>' % gb(free-left)
     if left > free:
-        lines.append('⚠️ Не хватит: <b>%s</b>%s' % (gb(left-free), ' или больше' if unknown else ''))
-    elif not unknown:
-        lines.append('После завершения свободно: <b>%s</b>' % gb(free-left))
-    if left + reserve > free:
-        lines.append('С запасом %s нужно освободить %s; защитная пауза может сработать раньше заполнения.'
-                     % (gb(reserve), gb(left+reserve-free)))
+        lines.append('⚠️ Не хватит: <b>%s</b>%s. Возможна защитная пауза.'
+                     % (gb(left-free), ' или больше' if unknown else ''))
+    elif left + reserve > free:
+        lines.append('⚠️ Для запаса освободите %s. Возможна защитная пауза.' % gb(left+reserve-free))
     if left <= 0 and not unknown:
-        lines.append('Вся очередь скачана.')
+        lines.append('✅ Всё скачано')
     elif rate <= 0:
-        lines.append('⏱ Прогноз времени недоступен: нет текущей скорости.')
-    else:
-        lines.append('⏱ Общий темп: %.1f МБ/с' % (rate / 1024**2))
-        if left > free:
-            lines.append('До заполнения диска при этом темпе: ≈ %s.' % duration(free/rate))
-        elif not unknown:
-            lines.append('До скачивания оставшегося объёма при этом темпе: ≈ %s.' % duration(left/rate))
-        lines.append('<i>Ориентир при сохранении общего темпа; паузы и ожидание участников увеличат срок.</i>')
+        lines.append('⏱ Жду скорость для прогноза')
+    elif left > free:
+        lines.append('⏱ До заполнения: ≈ %s при текущем темпе' % duration(free/rate))
+    elif not unknown:
+        lines.append('⏱ При текущем темпе: ≈ %s' % duration(left/rate))
     return '\n'.join(lines)

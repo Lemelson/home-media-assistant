@@ -21,7 +21,7 @@ class DiskSummaryTests(unittest.TestCase):
             self.assertEqual(result['rate_bytes'], G)
             text = render(dict(result, at=100), 100)
             self.assertIn('Не хватит: <b>2.0 ГБ', text)
-            self.assertIn('Свободно сейчас: <b>10.0 ГБ', text)
+            self.assertIn('Свободно: <b>10.0 ГБ', text)
             self.assertIn('защитная пауза', text)
 
     def test_unknown_size_and_zero_speed_do_not_promise_completion(self):
@@ -31,23 +31,25 @@ class DiskSummaryTests(unittest.TestCase):
                 result = collect(Path(tmp), [row], {'a': {'reserved_bytes': 5*G}}, G)
             self.assertEqual(result['remaining_bytes'], 5*G)
             text = render(dict(result, at=100), 100)
-            self.assertIn('Размер части загрузок ещё неизвестен', text)
-            self.assertNotIn('После завершения свободно', text)
-            self.assertIn('нет текущей скорости', text)
+            self.assertIn('после загрузок: уточняется', text)
+            self.assertNotIn('после загрузок: <b>', text)
+            self.assertIn('Жду скорость', text)
 
     def test_sufficient_space_and_stale_data(self):
         result = dict(free_bytes=20*G, remaining_bytes=5*G, rate_bytes=G/100,
                       headroom_bytes=G, unknown_count=0, at=100)
         text = render(result, 100)
-        self.assertIn('После завершения свободно: <b>15.0 ГБ', text)
-        self.assertIn('До скачивания оставшегося объёма', text)
+        self.assertIn('после загрузок: <b>15.0 ГБ', text)
+        self.assertIn('При текущем темпе:', text)
         self.assertNotIn('До заполнения', text)
+        self.assertEqual(len(text.splitlines()), 2)
+        self.assertLess(len(text), 140)
         stale = render(result, 200)
         self.assertNotIn('15.0 ГБ', stale)
         self.assertNotIn('≈', stale)
 
     def test_unavailable_probe_is_not_zero_free(self):
-        self.assertIn('нет свежих данных', render({'at':100}, 100))
+        self.assertIn('Обновляю данные о диске', render({'at':100}, 100))
 
     def test_status_to_dashboard_delivery_and_outage(self):
         from bot.dialog import Dialog
@@ -69,7 +71,7 @@ class DiskSummaryTests(unittest.TestCase):
             status.clear()
             monitor.tick(110)
             text = dialog.jobs.read_state('download-dashboard:1')['text']
-            self.assertIn('нет свежих данных', text)
+            self.assertIn('Обновляю данные о диске', text)
             self.assertNotIn('15.0 ГБ', text)
 
     def test_summary_is_in_message_budget_on_every_page(self):
