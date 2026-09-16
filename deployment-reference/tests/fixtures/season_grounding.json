@@ -1,0 +1,27 @@
+{
+  "raw": {
+    "action": "find",
+    "reply": "Found the requested season.",
+    "candidates": [
+      {
+        "title": "Example Series",
+        "original_title": "Example Series",
+        "year": 2011,
+        "kind": "show",
+        "season": 2,
+        "source_ids": [
+          "s1"
+        ]
+      }
+    ]
+  },
+  "evidence": [
+    {
+      "id": "s1",
+      "title": "Example Series — season 2 (2013)",
+      "excerpt": "Season 2 of Example Series.",
+      "url": "https://example.invalid/series/season-2",
+      "image": null
+    }
+  ]
+}

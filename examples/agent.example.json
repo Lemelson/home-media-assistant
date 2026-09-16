@@ -1,0 +1,5 @@
+{
+  "volume": "/Volumes/Media",
+  "volume_uuid": "REPLACE_WITH_YOUR_VOLUME_UUID",
+  "token": "REPLACE_WITH_A_RANDOM_TOKEN_OF_AT_LEAST_32_CHARACTERS"
+}

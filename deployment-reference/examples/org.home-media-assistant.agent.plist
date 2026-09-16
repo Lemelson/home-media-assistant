@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+<key>Label</key><string>org.home-media-assistant.agent</string>
+<key>ProgramArguments</key><array><string>/absolute/path/to/python3</string><string>-m</string><string>mac_agent.server</string></array>
+<key>WorkingDirectory</key><string>/absolute/path/to/home-media-assistant/deployment-reference</string>
+<key>EnvironmentVariables</key><dict><key>AGENT_STATE_DIRECTORY</key><string>/absolute/path/to/private-agent-state</string></dict>
+<key>RunAtLoad</key><true/>
+<key>KeepAlive</key><true/>
+<key>ThrottleInterval</key><integer>10</integer>
+</dict></plist>

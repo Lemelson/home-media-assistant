@@ -1,0 +1,8 @@
+{
+  "name": "home-media-assistant",
+  "description": "Self-hosted Telegram media-library assistant for macOS, Transmission and Plex. EN/RU docs. Домашний медиасервер и Telegram-бот.",
+  "topics": ["self-hosted", "home-server", "media-server", "media-library", "telegram-bot", "macos", "python", "transmission", "plex", "homelab", "bittorrent", "english", "russian", "bilingual"],
+  "release_tag": "v0.1.0-alpha.1",
+  "release_name": "First public preview / Первый публичный выпуск",
+  "prerelease": true
+}

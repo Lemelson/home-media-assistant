@@ -1,0 +1,23 @@
+[Unit]
+Description=Home Media Assistant bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=media-bot
+Group=media-bot
+WorkingDirectory=/opt/home-media-assistant/deployment-reference
+EnvironmentFile=/etc/home-media-assistant/bot.env
+Environment=STATE_DIRECTORY=/var/lib/home-media-assistant
+StateDirectory=home-media-assistant
+StateDirectoryMode=0700
+ExecStart=/usr/bin/python3 -m bot
+Restart=on-failure
+RestartSec=10
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
