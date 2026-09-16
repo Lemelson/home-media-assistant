@@ -14,7 +14,10 @@ class LivePeersTests(unittest.TestCase):
         self.assertNotIn('Раздают:', text)
         self.assertNotIn('скачивают:', text)
         dashboard = render([{'hash':'a'*40,'name':'Film','text':text,'snapshot_at':100}], now=100)[0]
-        self.assertIn('Передают вам: 3 · подключено: 4', dashboard)
+        self.assertNotIn('Передают вам:', dashboard)
+        low = self.text(seeders=0, peersSendingToUs=2, peersConnected=4)
+        dashboard = render([{'hash':'a'*40,'name':'Film','text':low,'snapshot_at':100}], now=100)[0]
+        self.assertIn('Передают вам: 2 · подключено: 4', dashboard)
 
     def test_unknown_live_counts_do_not_use_old_search_counts(self):
         text = self.text(seeders=0, leechers=1, quality={'seeders':42,'leechers':5})

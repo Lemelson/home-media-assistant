@@ -77,7 +77,7 @@
   "tests/test_jobs.py": "77ca6b325ad516b075285f6c857dff834ce56e6a44e5b464443ff878df7e31c0",
   "tests/test_library.py": "bca3ba4489a8a9d147c094d324634b59fb0954d38db9a10167946add70ca903c",
   "tests/test_library_dialog.py": "19c7a0e325c589c8cc255e93ca57d431b6fc74e30e3ec14e38c90ffa250d9114",
-  "tests/test_live_peers.py": "991b30832d7cfae4e964e39c89a7bbcadc0719b626d7ea274ebbf07060e96789",
+  "tests/test_live_peers.py": "bc322f80eca3cc54df3ea54e8952f080ebe85096ee5bc3ad9cae8e32fd337067",
   "tests/test_media.py": "06e0e61546af5b2e9d0078b3d2343adc3c1b18079d90af520f6b6346f5715298",
   "tests/test_media_labels.py": "4b8b5df06f3e8ad2f3d95d513b8660764d926876a81ee05ad3d76b7aedac5c15",
   "tests/test_model_metrics.py": "c03747625745846d85a609a85a9f5a8b53bb5258496989a6ef6eca99e651ee8b",
